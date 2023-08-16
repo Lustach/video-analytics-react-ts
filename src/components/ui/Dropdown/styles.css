@@ -1,0 +1,30 @@
+#dropdown__container {
+    position: relative;
+    display: inline-block;
+}
+
+#dropdown__container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+#dropdown__container li {
+    padding: 5px;
+}
+
+#dropdown__container li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.active {
+    display: block !important;
+}
+.non-active{
+    display: none;
+}
