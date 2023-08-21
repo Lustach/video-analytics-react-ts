@@ -6,15 +6,16 @@ import "./styles.css";
 
 
 export default function Dropdown(
-    { options, optionKey, optionValue, }:
+    { options }:
         { options: Category<Item>[], optionKey: string, optionValue: string }
 ) {
-    console.log(options)
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const toggleDropdown = () => {
-        setDropdownOpen(!isDropdownOpen); // Toggle the dropdown visibility
+        setDropdownOpen((isDropdownOpen) => !isDropdownOpen); // Toggle the dropdown visibility
     };
-
+    function getLinkTarget(href: string) {
+        return href.startsWith('#') ? "_self" : "_blank"
+    }
     const selectOptions = options.map((option: Category<Item>) => {
 
         const mapCategoryItems = () => {
@@ -22,14 +23,14 @@ export default function Dropdown(
 
             return <>
                 <span>{option.category.name}</span>
-                <ul>
-                    {categoryItems?.length ?
-                        categoryItems?.map((category) =>
-                            <a href={category.link} target={option.absolute ? '_blank' : '_self'}>
+                {categoryItems?.length ?
+                    <ul>{
+                        categoryItems.map((category) =>
+                            <a href={category.link} target={getLinkTarget(category.link)}>
                                 <li>{category.name}</li>
                             </a>
-                        ) : undefined}
-                </ul>
+                        )}
+                    </ul> : null}
             </>
         }
         const mapSubcategoryItems = () => {
@@ -38,20 +39,21 @@ export default function Dropdown(
             return <>
                 {
                     subcategoryItems?.length ?
-                        <span style={{ paddingLeft: "15px" }}>{subcategoryTitle}</span> : undefined
+                        <span style={{ paddingLeft: "15px" }}>{subcategoryTitle}</span> : null
                 }
-                <ul>
-                    {
-                        subcategoryItems?.length ?
+                {
+                    subcategoryItems?.length ?
+                        <ul>{
                             subcategoryItems?.map((subcategory) =>
-                                <a href={subcategory.link} target={option.absolute ? '_blank' : '_self'}>
+                                <a href={subcategory.link} target={getLinkTarget(subcategory.link)}>
                                     <li style={{ paddingLeft: "25px" }}
                                     >{subcategory.name}</li>
                                 </a>
-                            ) : undefined
-                    }
+                            )}
+                        </ul>
+                        : null
 
-                </ul>
+                }
             </>
         }
         return <li>
