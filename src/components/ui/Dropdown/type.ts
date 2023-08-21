@@ -1,8 +1,22 @@
 
-export type Options = {
-    key: string | number,
-    value: string,
-    link: string, //need sepcify a URL interface with ObjectURLIPTIONS
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type Category<T> = {
+    category: {
+        subcategory?: {
+            name: string;
+            items?: (T & Item)[];
+        };
+        name: string;
+        items?: (T & Item)[];
+    };
     [key: string]: any
+};
+export type Item = {
+    key: number
+    name: string
+    link: string// string for anchor
 }
+// export type Options = Category<Item>[]
+
+// export type Categories = {
+//     [key: string]: string
+// }
