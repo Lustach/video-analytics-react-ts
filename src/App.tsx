@@ -8,7 +8,7 @@ import EyeEarth from "@/assets/icons/earth.svg"
 import EyeSecurity from "@/assets/icons/security.svg"
 import EyeSubject from "@/assets/icons/subject.svg"
 import Dropdown from './components/ui/Dropdown/Dropdown'
-import { options } from './components/ui/Dropdown/DropdownData'
+import { options } from './components/ui/Dropdown/dropdownData'
 function App() {
   const [count, setCount] = useState(0)
   return (
